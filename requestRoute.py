@@ -7,7 +7,7 @@ def route(start,end,apiKey,mode='walking',numPoint=3):
     requests route from googlemaps
 
     start/end: a string, address of start/endpoint
-    mode: transportation mode, transit, driving, walking, bicycling
+    mode: transportation mode, driving, walking, bicycling
 
     returns:    path, a list of lat,lng coords describing the path
                 places, a dictionay of interesting places near the route
