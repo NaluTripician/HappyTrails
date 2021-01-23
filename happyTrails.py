@@ -32,8 +32,12 @@ def main(start,end,apiKey,mode):
 
     request = endpoint+navReq
     response = urllib.request.urlopen(request).read()
+    happyTrail = json.loads(response)
 
-    return json.loads(response)
+    with open('happytrail.txt','w') as json_file:
+        json.dump(happyTrail,json_file)
+
+    return happyTrail
 
 if __name__ == '__main__':
   main(sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4])
