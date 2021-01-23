@@ -4,6 +4,7 @@ import random
 import sys
 import route from requestRoute
 import rank from rank
+import calcDistance from distanceCalculator
 
 def getNumStops(dist):
     if dist < 1999:
@@ -20,7 +21,7 @@ def main(start,end,apiKey,mode):
     path,places,dist = route(start,end,apiKey,mode)
 
     numberOfStops = getNumStops(dist)
-    finalDestinations = rank(places)[:numberOfStops]
+    finalDestinations = rank(calcDistance(places),dist)[:numberOfStops]
 
     endpoint = 'https://maps.googleapis.com/maps/api/directions/json?'
 
