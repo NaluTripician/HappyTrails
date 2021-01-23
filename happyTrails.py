@@ -28,7 +28,7 @@ def main(start,end,apiKey,mode):
     navReq = 'origin={}&destination={}&mode={}&key={}&waypoints:optimize:true'.format(start.replace(" ","+"),end.replace(" ","+"),mode.replace(" ","+"),apiKey)
 
     for poi in finalDestinations:
-        navReq += '|' + poi
+        navReq += '|' + poi[1]['place_id']
 
     request = endpoint+navReq
     response = urllib.request.urlopen(request).read()
