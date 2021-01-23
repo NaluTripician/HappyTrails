@@ -16,4 +16,4 @@ def rank(places)
             rank += 5*(1//(places[place_id]['rating']))
 #        distance = jack's code
         places[place_id]['rank'] = rank
-    return({key: val for key, val in sorted(place_dict.items(), key=lambda item: item[1]['rank'])})
+    return([key: val for key, val in sorted(place_dict.items(), key=lambda item: item[1]['rank'])])
