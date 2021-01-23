@@ -10,7 +10,7 @@ def getNumStops(dist):
         return 2
     elif dist < 9999:
         return dist%1000
-    elif(dist <200000):
+    elif(dist <199999):
         return 2
     else:
         return dist%100000
@@ -18,8 +18,6 @@ def getNumStops(dist):
 def main(start,end,apiKey,mode):
 
     path,places,dist = route(start,end,apiKey,mode)
-
-    #ranking stuff will go here
 
     numberOfStops = getNumStops(dist)
     finalDestinations = rank(places)[:numberOfStops]
