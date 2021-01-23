@@ -21,7 +21,7 @@ def main(start,end,apiKey,mode):
     path,places,dist = route(start,end,apiKey,mode)
 
     numberOfStops = getNumStops(dist)
-    finalDestinations = rank(calcDistance(places,path),)[:numberOfStops]
+    finalDestinations = rank(calcDistance(places,path),dist)[:numberOfStops]
 
     endpoint = 'https://maps.googleapis.com/maps/api/directions/json?'
 
