@@ -23,19 +23,9 @@ def main(start,end,apiKey,mode):
     numberOfStops = getNumStops(dist)
     finalDestinations = rank(calcDistance(places,path),dist)[:numberOfStops]
 
-    endpoint = 'https://maps.googleapis.com/maps/api/directions/json?'
-
-    navReq = 'origin={}&destination={}&mode={}&key={}&waypoints:optimize:true'.format(start.replace(" ","+"),end.replace(" ","+"),mode.replace(" ","+"),apiKey)
-
+    happyTrail = []
     for poi in finalDestinations:
-        navReq += '|' + poi[0]
-
-    request = endpoint+navReq
-    response = urllib.request.urlopen(request).read()
-    happyTrail = json.loads(response)
-
-    with open('happytrail.txt','w') as json_file:
-        json.dump(happyTrail,json_file)
+        happyTrail.append(poi[0])
 
     return happyTrail
 
