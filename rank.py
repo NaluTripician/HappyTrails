@@ -8,8 +8,9 @@ def rank(places,dist):
         rank = 0
         keys = places[place_id].keys()
         if ('types' in keys): #check if type is in type_list. if it isn't, rank += 5
-            if (places[place_id]['types'] not in type_list):
-                rank += 5
+            for type in (places[place_id]['types']):
+                if type not in type_list
+                    rank += 5
         if ('price_level' in keys):
             rank += 2*(places[place_id]['price_level'])
         if ('rating' in keys):
