@@ -3,8 +3,8 @@ import json
 import random
 import sys
 from requestRoute import route
-from rank import rank 
-import calcDistance from distanceCalculator
+from rank import rank
+from distanceCalculator import calcDistance 
 
 def getNumStops(dist):
     if dist < 1999:
