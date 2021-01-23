@@ -30,11 +30,9 @@ def main(start,end,apiKey,mode):
     for poi in finalDestinations:
         navReq += '|' + poi[0]
 
-    print(navReq)
     request = endpoint+navReq
     response = urllib.request.urlopen(request).read()
 
-    print('\n',json.loads(response))
     return json.loads(response)
 
 if __name__ == '__main__':
