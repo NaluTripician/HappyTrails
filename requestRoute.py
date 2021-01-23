@@ -2,8 +2,6 @@ import urllib.request
 import json
 import random
 
-apiKey = 'AIzaSyBpXEqVODCBRNApfwdQjg_LsPLL_UUyCbU'
-
 def route(start,end,apiKey,mode='walking',numPoint=3):
     """
     requests route from googlemaps
@@ -15,6 +13,7 @@ def route(start,end,apiKey,mode='walking',numPoint=3):
                 places, a dictionay of interesting places near the route
     """
 
+    #request initial path
     endpoint = 'https://maps.googleapis.com/maps/api/directions/json?'
 
     navReq = 'origin={}&destination={}&mode={}&key={}&units=metric'.format(start.replace(" ","+"),end.replace(" ","+"),mode.replace(" ","+"),apiKey)
@@ -45,12 +44,14 @@ def route(start,end,apiKey,mode='walking',numPoint=3):
 
         dist += step['distance']['value']
 
+    #randomly chooses junction allong route to find poinst of intrest
     POI = random.sample(path,numPoint)
 
     endpoint='https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
 
     places = {}
 
+    #Finds points of intrest near path and extracts information from them
     for point in POI:
 
         placeReq ='key={}&location={}&radius={}'.format(apiKey,str(point[0]) +','+str(point[1]),str(dist*.1))
@@ -89,12 +90,4 @@ def route(start,end,apiKey,mode='walking',numPoint=3):
                 rating = placeDetails['result']['rating']
                 places[id]['rating'] = rating
 
-
-
-
     return path,places
-
-
-
-
-route("Verdi Square, New York","The Metropolitan Museum of Art",apiKey,"walking")
