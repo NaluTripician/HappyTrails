@@ -1,48 +1,31 @@
-import urllib.request
-import json
-import sys
+import geopy.distance
 
 def calcDistance(possible_origins, possible_dest):
-    distance_dict = {}
-    apiKey = 'AIzaSyBpXEqVODCBRNApfwdQjg_LsPLL_UUyCbU'
-    urlStem = 'https://maps.googleapis.com/maps/api/distancematrix/json?'
-    destinations = 'destinations=place_id:'
-    origins = 'origins='
+    """
+    Calculates distances from the Google Maps route for points of interest
+
+    possible_origins: a dictionary of place IDs and features of the POIs
+    possible_dest: a list of tuples representing coordinates from along the route
+
+    returns: distance_dict, a modified version of the origins dictionary with distances added to
+    represent the shortest distance from the original route to the POI
+    """
 
     for x in possible_origins:
-        origins += x
-        if possible_origins.index(x) != len(possible_origins) - 1:
-            origins += '|'
-
-    for x in possible_dest:
-        destinations += x
-        #if possible_dest.index(x) != len(possible_dest) - 1:
-            #destinations += '|'
-
-    params = 'units=imperial&' + origins + '&' + destinations + '&mode=walking' + '&key=' + apiKey
-
-    request = urlStem + params
-
-    print(request)
-
-    response = urllib.request.urlopen(request).read()
-
-    distances = json.loads(response)
-
-    for x in distances['rows']:
-        ind = distances['rows'].index(x)
-        origin_id = possible_origins[ind]
+        coords_1 = possible_origins[x]['coords']
         min_dist = 0
-        for y in x['elements']:
-            ind2 = x['elements'].index(y)
-            if ind2 == 0:
-                min_dist = y['distance']['value']
-            elif y['distance']['value'] < min_dist:
-                min_dist = y['distance']['value']
+        i = 0
+        for y in possible_dest:
+            coords_2 = y
+            dist = geopy.distance.distance(coords_1, coords_2).meters
+            if i == 0:
+                min_dist = dist
+            elif dist < min_dist:
+                min_dist = dist
             else:
                 pass
-        distance_dict[origin_id] = min_dist
+            i+=1
+        possible_origins[x]['distance'] = min_dist
 
-    return distance_dict
 
-calcDistance(['place_id:ChIJW-fzPFPa5okRZ5ja8hJQhJ0', 'place_id:ChIJ74xBa47b5okRLf1gMWs5d8w'], "ChIJm7aRpr_b5okRUjMDYPutIXQ")
+    return possible_origins
