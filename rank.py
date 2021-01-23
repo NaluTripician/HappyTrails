@@ -17,4 +17,4 @@ def rank(places,dist):
 #        distance = jack's code
         rank+= 3*(places[placeID]['distance']/dist)
         places[place_id]['rank'] = rank
-    return([key: val for key, val in sorted(place_dict.items(), key=lambda item: item[1]['rank'])])
+    return([(k,v) for key, val in sorted(place_dict.items(), key=lambda item: item[1]['rank'])])
