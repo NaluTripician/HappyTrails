@@ -55,7 +55,7 @@ def route(start,end,apiKey,mode='walking',numPoint=3):
     #Finds points of intrest near path and extracts information from them
     for point in POI:
 
-        placeReq ='key={}&location={}&radius={}'.format(apiKey,str(point[0]) +','+str(point[1]),str(dist*.1))
+        placeReq ='key={}&location={}&radius={}'.format(apiKey,str(point[0]) +','+str(point[1]),"500")
 
         request = endpoint+placeReq
         response = json.loads(urllib.request.urlopen(request).read())
