@@ -2,8 +2,8 @@ import urllib.request
 import json
 import random
 import sys
-import route from requestRoute
-import rank from rank
+from requestRoute import route
+from rank import rank 
 import calcDistance from distanceCalculator
 
 def getNumStops(dist):
@@ -21,7 +21,7 @@ def main(start,end,apiKey,mode):
     path,places,dist = route(start,end,apiKey,mode)
 
     numberOfStops = getNumStops(dist)
-    finalDestinations = rank(calcDistance(places),dist)[:numberOfStops]
+    finalDestinations = rank(calcDistance(places),)[:numberOfStops]
 
     endpoint = 'https://maps.googleapis.com/maps/api/directions/json?'
 
