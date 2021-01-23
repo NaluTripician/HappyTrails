@@ -3,7 +3,7 @@ Ranks how "desirable" a place is based on type, price level, rating, and distanc
 """
 
 def rank(places)
-    type_list = [amusement_park, aquarium, art_gallery, bakery, bicycle_store, book_store, bowling_alley, cafe, clothing_store, library, movie_theater, museum, park, shopping_mall, stadium, tourist_attraction, zoo, food, landmark, natural_feature, point_of_interest, town_square]
+    type_list = ['amusement_park', 'aquarium', 'art_gallery', 'bakery', 'bicycle_store', 'book_store', 'bowling_alley', 'cafe', 'clothing_store', 'library', 'movie_theater', 'museum', 'park', 'shopping_mall', 'stadium', 'tourist_attraction', 'zoo', 'food', 'landmark', 'natural_feature', 'point_of_interest', 'town_square']
     for (place_id,info_dict) in places:
         rank = 0
         keys = info_dict.keys()
