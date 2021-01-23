@@ -11,6 +11,7 @@ def route(start,end,apiKey,mode='walking',numPoint=3):
 
     returns:    path, a list of lat,lng coords describing the path
                 places, a dictionay of interesting places near the route
+                dist, total length of route in meters
     """
 
     #request initial path
@@ -90,4 +91,4 @@ def route(start,end,apiKey,mode='walking',numPoint=3):
                 rating = placeDetails['result']['rating']
                 places[id]['rating'] = rating
 
-    return path,places
+    return path,places,dist
