@@ -45,7 +45,7 @@
               map: map,
           });
           console.log(routeRequest['origin']);
-          
+
           // var newReq = {
           //     origin: routeRequest['origin'],
           //     destination: routeRequest['destination'],
@@ -80,9 +80,9 @@
           <img src="../../static/img/happyTrailsLogo.jpg" class="img-fluid header-img">
         </div>
         <div class="row text-center justify-content-center">
-          <form action="{% url 'locations'%}" method="post" id="address_form">{% csrf_token %}
+          <form action="{% url 'index'%}" method="post" id="address_form">{% csrf_token %}
         </form>
-            
+
             <div class="col-6">
               <input type="text" name="origin" form="address_form" placeholder="Start Point">
             </div>
@@ -114,7 +114,7 @@
   </div>
   <div class="row justify-content-center">
     <p>
-      Created By: <a href="https://www.linkedin.com/in/daniel-knopf-609/">Daniel Knopf</a>, <a href="https://www.linkedin.com/in/isabel-armour-garb/">Isabel Armour-Garb</a>, <a href="http://corgiorgy.com/">Jack Canavan-Gosselin</a>, <a href="https://www.youtube.com/watch?v=DLzxrzFCyOs">Nalu Tripician</a>
+      Created By: <a href="https://www.linkedin.com/in/daniel-knopf-609/">Daniel Knopf</a>, <a href="https://www.linkedin.com/in/isabel-armour-garb/">Isabel Armour-Garb</a>, <a href="https://www.linkedin.com/in/jack-canavan-gosselin/">Jack Canavan-Gosselin</a>, <a href="https://www.linkedin.com/in/nalu-tripician-8b3691174/">Nalu Tripician</a>
     </p>
   </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -122,4 +122,3 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
 </html>
-
