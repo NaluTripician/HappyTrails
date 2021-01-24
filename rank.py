@@ -31,7 +31,10 @@ def rank2(places, dist):
     print(places)
     if len(places) == 0:
         return None
-    return ([(k,v) for k, v in sorted(places.items(), key=lambda item: item[1]['rank'])][random.randint(0,3)])
+    r = random.randint(0,3)
+    if r > len(places):
+        r = 0
+    return ([(k,v) for k, v in sorted(places.items(), key=lambda item: item[1]['rank'])][r])
 
 def rank(places,dist):
     output = []
