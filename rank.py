@@ -13,7 +13,7 @@ def rank(places,dist):
         if ('types' in keys): #check if type is in type_list. if it isn't, rank += 5
             for type in (places[place_id]['types']):
                 if type in bad_types:
-                    places.pop(places_id, None)
+                    places.pop(place_id, None)
                     avail = False
                     print('break1')
                     break
