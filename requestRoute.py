@@ -60,13 +60,7 @@ def route(start,end,apiKey,mode='walking'):
         for i in idx:
             if(i<len(path)-1):
                 POI.append( ( ((path[i][0] + path[i+1][0])/2), ((path[i][1] + path[i+1][1])/2)))
-    # if(len(path)<5):
-    #     idx = np.round(np.linspace(0, len(path) - 1, len(path))).astype(int)
-    # else:
-    #     idx = np.round(np.linspace(0, len(path) - 1, 5)).astype(int)
-    #
-    # POI = path[idx]
-    #
+
     if(dist<10000):
         radius="500"
     elif(dist<60000):
@@ -100,22 +94,26 @@ def route(start,end,apiKey,mode='walking'):
             places[id] = {}
 
             keys = placeDetails['result'].keys()
-
+            res = placeDetails['result']
             coords = (placeDetails['result']['geometry']['location']['lat'],placeDetails['result']['geometry']['location']['lng'])
             places[id]['coords'] = coords
 
             if('name' in keys):
-                name = placeDetails['result']['name']
+                name = res['name']
                 places[id]['name'] = name
             if('types' in keys):
-                types = placeDetails['result']['types']
+                types = res['types']
                 places[id]['types'] = types
             if('price_level' in keys):
-                price = placeDetails['result']['price_level']
+                price = res['price_level']
                 places[id]['price_level'] = price
             if('rating' in keys):
-                rating = placeDetails['result']['rating']
+                rating = res['rating']
                 places[id]['rating'] = rating
+            if('formatted_address' in keys):
+                formatted_address = res['formatted_address']
+                places[id]['formatted_address'] = formatted_address
+
         placePoints.append(places)
 
     return path,placePoints,dist
