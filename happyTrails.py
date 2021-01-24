@@ -17,10 +17,10 @@ def main(start,end,apiKey,mode):
     for poi in finalDestinations:
         if poi is not None:
             happyTrail.append(poi[0])
-            nameAddress.append(poi[1]['name'],poi[1]['address'])
+            nameAddress.append(poi[1]['name'],poi[1]['formatted_address'])
         print(poi,"\n\n\n\n",type(poi))
 
-    return happyTrail#,nameAddress
+    return happyTrail,nameAddress
 
 if __name__ == '__main__':
   main(sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4])
