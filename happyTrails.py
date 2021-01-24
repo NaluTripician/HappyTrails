@@ -19,7 +19,6 @@ def getNumStops(dist):
 def main(start,end,apiKey,mode):
 
     path,places,dist = route(start,end,apiKey,mode)
-    print(len(places))
 
     numberOfStops = getNumStops(dist)
     finalDestinations = rank(calcDistance(places,path),dist)[:numberOfStops]

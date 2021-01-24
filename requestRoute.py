@@ -51,11 +51,21 @@ def route(start,end,apiKey,mode='walking'):
 
     if(len(path)<5):
         idx = np.round(np.linspace(0, len(path) - 1, len(path))).astype(int)
+        POI = path[idx]
     else:
-        idx = np.round(np.linspace(0, len(path) - 1, 5)).astype(int)
+        idx = random.sample(list(range(0,len(path)-2),k=5)
 
-    POI = path[idx]
+        POI =[]
+        for i in idx:
+            POI.append( ( ((path[i][0] + path[i+1][0])/2), ((path[i][1] + path[i+1][2])/2)))
 
+    # if(len(path)<5):
+    #     idx = np.round(np.linspace(0, len(path) - 1, len(path))).astype(int)
+    # else:
+    #     idx = np.round(np.linspace(0, len(path) - 1, 5)).astype(int)
+    #
+    # POI = path[idx]
+    #
     if(dist<10000):
         radius="500"
     elif(dist<60000):
