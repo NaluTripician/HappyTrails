@@ -10,16 +10,17 @@ def main(start,end,apiKey,mode):
 
     path,places,dist = route(start,end,apiKey,mode)
 
-    #numberOfStops = getNumStops(dist)
     finalDestinations = rank(calcDistance(places,path),dist)
 
     happyTrail = []
+    nameAddress = []
     for poi in finalDestinations:
         if poi is not None:
             happyTrail.append(poi[0])
+            nameAddress.append(poi[1]['name'],poi[1]['address'])
         print(poi)
 
-    return happyTrail
+    return happyTrail,nameAddress
 
 if __name__ == '__main__':
   main(sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4])

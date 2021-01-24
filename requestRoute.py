@@ -116,6 +116,10 @@ def route(start,end,apiKey,mode='walking'):
             if('rating' in keys):
                 rating = placeDetails['result']['rating']
                 places[id]['rating'] = rating
+            if('formatted_address' in keys):
+                address = placeDetails['results']['formatted_address']
+                places[id]['address'] = address
+                
         placePoints.append(places)
 
     return path,placePoints,dist
