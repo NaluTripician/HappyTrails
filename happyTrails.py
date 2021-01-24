@@ -15,7 +15,7 @@ def main(start,end,apiKey,mode):
 
     happyTrail = []
     for poi in finalDestinations:
-        if poi[0] is not None:
+        if poi is not None:
             happyTrail.append(poi[0])
         print(poi)
 
