@@ -21,7 +21,17 @@ def index(request):
 
         print(place_list)
         print("addressList:", addressList)
+        print("address liost json:", json.dumps(addressList))
+        newAddressList = []
+        for address in addressList:
+            newAddressList.append({
+                'name': address[0],
+                'address': address[1]
+            })
+
+        # newAddressList = json.dumps(newAddressList)
         
+        print(newAddressList)
         place_list = place_list[:5]
         print("AFTER:", place_list)
         
@@ -36,10 +46,13 @@ def index(request):
         }
         return render(request, 'HappyTrailsApp/index.html', {
             'routeRequest': json.dumps(routeRequest),
+            'addressList': newAddressList,
         })
     else:
         context = {
             'routeRequest': 'No Route',
+            'addressList': [],
+
         }
         return render(request, 'HappyTrailsApp/index.html', context)
 

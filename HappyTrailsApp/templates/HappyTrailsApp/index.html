@@ -24,8 +24,14 @@
       height: 70vh;
     }
   body {
-    background-image: url('https://raw.githubusercontent.com/dknopf/imageupload/main/happytrailsbackground.png');
+    font-family: 'Courier New', monospace;
+    /* background-image: url('https://raw.githubusercontent.com/dknopf/imageupload/main/happytrailsbackground.png'); */
   }
+
+  .tiled{
+    background-image: url('https://raw.githubusercontent.com/dknopf/imageupload/main/happytrailsbackground.png');
+}
+  
 
 .header-img {
     max-width: 30vw;
@@ -43,6 +49,7 @@
 #submitButton {
   width: 70%;
   height: 4vh;
+  border-radius: 10px;
 }
 
 @media (max-width: 767.98px) {
@@ -107,9 +114,12 @@
                 if (status == 'OK'){
                     console.log(result);
                     document.getElementById("map").style.display="block";
+                    document.getElementById("routeCards").style.display="block";
                     document.getElementById("loadingScreen").style.display="none";
-
+                    var audio = document.getElementById('audio');
+                    audio.pause();
                     directionsRenderer.setDirections(result);
+
                 }
             });
         }
@@ -150,7 +160,7 @@
           </div>
 
         </div>
-        <div class="row justify-content-center py-2">
+        <div class="row justify-content-center py-3">
           <input type="submit" form="address_form" id="submitButton">
 
         </div>
@@ -159,20 +169,23 @@
 
 
     <div class="row justify-content-center">
-      <div id="map" class="mapArea col-8 p-2 text-center">
+      <div id="map" class="mapArea col-7 p-2 text-center">
       </div>
-      <div id="loadingScreen" class="mapArea">
+      <div id="loadingScreen" class="mapArea col-7">
         <img class="img-fluid" src="https://raw.githubusercontent.com/dknopf/imageupload/main/IMG_0007.jpg">
       </div>
-      <div class="card p-2 text-center">
+      <div class="card col-3 p-2 text-center" id="routeCards">
         <div class="card-body">
            <h5 class="card-title">YOUR ROUTE</h5>
            <h6 class="card-subtitle mb-2 text-muted">Here are some places to stop along your journey!</h6>
-           <li class="list-group-item">first cool place</li>
-           <li class="list-group-item">second cool place</li>
+
+           {% for address in addressList %}
+           <li class="list-group-item"><strong>{{address.name}}</strong>: {{address.address}}</li>
+           {% endfor %}
          </div>
     </div>
   </div>
+  <audio src="https://github.com/dknopf/imageupload/blob/main/Happy%20Trails%20Jingle.wav?raw=true" id="audio"></audio>
 
 
   <div class="row justify-content-center py-2">
@@ -180,13 +193,21 @@
       Created By: <a href="https://www.linkedin.com/in/daniel-knopf-609/">Daniel Knopf</a>, <a href="https://www.linkedin.com/in/isabel-armour-garb/">Isabel Armour-Garb</a>, <a href="https://www.linkedin.com/in/jack-canavan-gosselin/">Jack Canavan-Gosselin</a>, <a href="https://www.linkedin.com/in/nalu-tripician-8b3691174/">Nalu Tripician</a>
     </p>
   </div>
+  <div class="col 12">
+    <div class ="image-fluid tiled row-fill">
+        <p class="font-weight-normal text-center">HAPPY TRAILS</p>
+    </div>
+</div>
   <script>
        document.getElementById("submitButton").onclick = function() {toggleLoading()};
  
        function toggleLoading() {
          console.log("toggle loading");
          document.getElementById("map").style.display="none";
+         document.getElementById("routeCards").style.display="none";
          document.getElementById("loadingScreen").style.display="block";
+         var audio = document.getElementById('audio');
+         audio.play();
        }
  
   </script> 
