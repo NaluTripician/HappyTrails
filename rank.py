@@ -31,5 +31,5 @@ def rank(places,dist):
     for id in bad_ids:
         del places[id]
     #print(len(places.keys()))
-    #print(places)
+    print(places)
     return([(k,v) for k, v in sorted(places.items(), key=lambda item: item[1]['rank'])])
