@@ -36,7 +36,8 @@ def rank2(places, dist):
     if r > len(places):
         print('in loop')
         r = 0
-    return ([(k,v) for k, v in sorted(places.items(), key=lambda item: item[1]['rank'])][r])
+    output = [(k,v) for k, v in sorted(places.items(), key=lambda item: item[1]['rank'])]
+    return (output[r])
 
 def rank(places,dist):
     output = []
