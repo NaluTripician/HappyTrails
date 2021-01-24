@@ -20,7 +20,7 @@ def rank(places,dist):
                     rank += 3
         if avail == False:
             print('break2')
-            del places[placeid]
+            del places[place_id]
             break
         if ('price_level' in keys):
             rank += 2*(places[place_id]['price_level'])
