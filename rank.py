@@ -8,6 +8,7 @@ def rank(places,dist):
     print(len(places.keys()))
     bad_ids = []
     for place_id in places:
+        rank = 0
         avail = True
         keys = places[place_id].keys()
         if ('types' in keys): #check if type is in type_list. if it isn't, rank += 5
