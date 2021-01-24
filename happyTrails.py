@@ -18,7 +18,7 @@ def main(start,end,apiKey,mode):
         if poi is not None:
             happyTrail.append(poi[0])
             #nameAddress.append(poi[1]['name'],poi[1]['address'])
-        print(poi[1])
+        print(poi,"\n\n\n\n",type(poi))
 
     return happyTrail#,nameAddress
 

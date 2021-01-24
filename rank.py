@@ -28,15 +28,11 @@ def rank2(places, dist):
 
     for id in bad_ids:
         del places[id]
-    #print(places)
     if len(places) == 0:
-    #    print("none")
         return None
     r = random.randint(0,3)
     if r >= len(places):
-    #    print('in loop')
         r = 0
-    print(r)
     output = [(k,v) for k, v in sorted(places.items(), key=lambda item: item[1]['rank'])]
     return (output[r])
 
