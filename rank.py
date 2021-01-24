@@ -22,8 +22,8 @@ def rank2(places, dist):
             if ('price_level' in keys):
                 rank += 2*(places[place_id]['price_level'])
             if ('rating' in keys):
-                rank += 5*(1//(places[place_id]['rating']))
-            rank+= 3*(places[place_id]['distance']/dist)
+                rank += 10*(1//(places[place_id]['rating']))
+            rank+= 5*(places[place_id]['distance']/dist)
             places[place_id]['rank'] = rank
 
     for id in bad_ids:
