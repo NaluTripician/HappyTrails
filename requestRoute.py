@@ -101,25 +101,24 @@ def route(start,end,apiKey,mode='walking'):
 
             keys = placeDetails['result'].keys()
             res = placeDetails['result']
-            print(res)
             coords = (placeDetails['result']['geometry']['location']['lat'],placeDetails['result']['geometry']['location']['lng'])
             places[id]['coords'] = coords
 
             if('name' in keys):
-                name = placeDetails['result']['name']
+                name = res['name']
                 places[id]['name'] = name
             if('types' in keys):
-                types = placeDetails['result']['types']
+                types = res'types']
                 places[id]['types'] = types
             if('price_level' in keys):
-                price = placeDetails['result']['price_level']
+                price = res['price_level']
                 places[id]['price_level'] = price
             if('rating' in keys):
-                rating = placeDetails['result']['rating']
+                rating = res['rating']
                 places[id]['rating'] = rating
             if('formatted_address' in keys):
-                print('fuck',placeDetails['results'])
-                formatted_address = placeDetails['results']['formatted_address']
+                print('fuck',res)
+                formatted_address = res['formatted_address']
                 print('shit')
                 places[id]['formatted_address'] = formatted_address
                 print('bitch')
