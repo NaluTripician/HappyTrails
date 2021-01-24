@@ -84,12 +84,17 @@
         </form>
             
             <div class="col-6">
-              <label for="origin">Origin</label>
-              <input type="text" name="origin" form="address_form">
+              <input type="text" name="origin" form="address_form" placeholder="Start Point">
             </div>
             <div class="col-6">
-              <input type="text" name="end" form="address_form">
+              <input type="text" name="end" form="address_form" placeholder="End Point">
             </div>
+            <select name="transport_mode" form="address_form">
+              <option selected="selected" disabled>Transport Method</option>
+              <option value="Walking">Walking</option>
+              <option value="Driving">Driving</option>
+              <option value="Biking">Biking</option>
+            </select>
             <input type="submit" form="address_form">
             <!-- <div class="dropdown">
               <button class="dropbtn" form="address_form" name="transport_mode">Dropdown</button>
@@ -106,6 +111,11 @@
     <div class="row justify-content-center">
       <div id="map">
       </div>
+  </div>
+  <div class="row justify-content-center">
+    <p>
+      Created By: <a href="https://www.linkedin.com/in/daniel-knopf-609/">Daniel Knopf</a>, <a href="https://www.linkedin.com/in/isabel-armour-garb/">Isabel Armour-Garb</a>, <a href="http://corgiorgy.com/">Jack Canavan-Gosselin</a>, <a href="https://www.youtube.com/watch?v=DLzxrzFCyOs">Nalu Tripician</a>
+    </p>
   </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
