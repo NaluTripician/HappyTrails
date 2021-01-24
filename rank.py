@@ -8,27 +8,23 @@ def rank(places,dist):
     print(len(places.keys()))
     for place_id in places:
         avail = True
-        rank = 0
         keys = places[place_id].keys()
         if ('types' in keys): #check if type is in type_list. if it isn't, rank += 5
             for type in (places[place_id]['types']):
                 if type in bad_types:
                     avail = False
-                    print('break1')
+                    del places[place_id]
                     break
                 elif type not in type_list:
                     rank += 3
-        if avail == False:
-            print('break2')
-            places.remove(place_id)
-            print(place_id)
-            break
-        if ('price_level' in keys):
-            rank += 2*(places[place_id]['price_level'])
-        if ('rating' in keys):
-            rank += 5*(1//(places[place_id]['rating']))
-        rank+= 3*(places[place_id]['distance']/dist)
-        places[place_id]['rank'] = rank
+        if avail:
+            if ('price_level' in keys) and (avail == True):
+                rank += 2*(places[place_id]['price_level'])
+            if ('rating' in keys) and (avail == True):
+                rank += 5*(1//(places[place_id]['rating']))
+            if avail == True:
+                rank+= 3*(places[place_id]['distance']/dist)
+            places[place_id]['rank'] = rank
     print(len(places.keys()))
     print(places)
     return([(k,v) for k, v in sorted(places.items(), key=lambda item: item[1]['rank'])])
