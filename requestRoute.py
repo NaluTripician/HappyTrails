@@ -75,10 +75,10 @@ def route(start,end,apiKey,mode='walking'):
 
     endpoint='https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
 
-    places = {}
-
     #Finds points of intrest near path and extracts information from them
+    placePoints = []
     for point in POI:
+        places = {}
 
         placeReq ='key={}&location={}&radius={}'.format(apiKey,str(point[0]) +','+str(point[1]),radius)
 
@@ -115,5 +115,6 @@ def route(start,end,apiKey,mode='walking'):
             if('rating' in keys):
                 rating = placeDetails['result']['rating']
                 places[id]['rating'] = rating
+        placePoints.append(places)
 
-    return path,places,dist
+    return path,placePoints,dist
