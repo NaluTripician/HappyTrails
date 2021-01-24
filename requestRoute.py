@@ -50,9 +50,9 @@ def route(start,end,apiKey,mode='walking'):
     path = np.array(path)
 
     if(len(path)<5):
-        idx = np.round(np.linspace(0, len(arr) - 1, len(path))).astype(int)
+        idx = np.round(np.linspace(0, len(path) - 1, len(path))).astype(int)
     else:
-        idx = np.round(np.linspace(0, len(arr) - 1, 5)).astype(int)
+        idx = np.round(np.linspace(0, len(path) - 1, 5)).astype(int)
 
     if(dist<10000):
         radius="500"
