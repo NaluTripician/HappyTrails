@@ -2,7 +2,7 @@ import urllib.request
 import json
 import random
 
-def route(start,end,apiKey,mode='walking',numPoint=10):
+def route(start,end,apiKey,mode='walking'):
     """
     requests route from googlemaps
 
@@ -46,7 +46,9 @@ def route(start,end,apiKey,mode='walking',numPoint=10):
         dist += step['distance']['value']
 
     #randomly chooses junction allong route to find poinst of intrest
-    POI = random.sample(path,numPoint)
+    point_of_possibility = len(path)
+    POI = [path[point_of_possibility//6],path[point_of_possibility//2],path[point_of_possibility//2 + point_of_possibility//6],path[3* point_of_possibility//6]]
+    #POI = random.sample(path,numPoint)
 
     endpoint='https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
 
