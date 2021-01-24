@@ -2,7 +2,7 @@ import urllib.request
 import json
 import random
 
-def route(start,end,apiKey,mode='walking',numPoint=3):
+def route(start,end,apiKey,mode='walking',numPoint=10):
     """
     requests route from googlemaps
 
