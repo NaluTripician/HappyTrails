@@ -7,10 +7,10 @@
     <title>HappyTrails! Make Walking Fun</title>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpXEqVODCBRNApfwdQjg_LsPLL_UUyCbU
     &callback=initMap&libraries=&v=weekly" defer></script>
-    
+
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
+
     <style>
       #map {
     height: 70vh;
@@ -109,6 +109,15 @@
         <div class="row justify-content-center">
           <img src="https://raw.githubusercontent.com/NaluTripician/HappyTrails/main/HappyTrailsApp/static/img/happyTrailsLogo.jpg?token=ABXIWUF77KFEBZAXXU7ZH6TABUFPO" class="img-fluid header-img">
         </div>
+
+        <div class="row text-center justify-content-center py-2">
+            <p class="font-weight-normal">Want to spice up your morning stroll, afternoon bike ride, or evening drive?</p>
+        </div>
+
+        <div class="row text-center justify-content-center py-2">
+            <p class="font-weight-normal">Just enter where you are and where you want to go, and Happy Trails will take care of the rest!</p>
+        </div>
+
         <div class="row text-center justify-content-center py-2">
           <form action="{% url 'index'%}" method="post" id="address_form">{% csrf_token %}
         </form>
@@ -143,10 +152,30 @@
         </div>
       </div>
     </section>
-    <div class="row justify-content-center">
+
+    <!-- <div class="row justify-content-center">
       <div id="map">
       </div>
-  </div>
+  </div> -->
+
+    <div class="row justify-content-center">
+      <div class="col-8 p-2 text-center">
+          <div id="map">
+          </div>
+      </div>
+      <div class="card p-2 text-center">
+          <div class="card-body">
+             <h5 class="card-title">YOUR ROUTE</h5>
+             <h6 class="card-subtitle mb-2 text-muted">Here are some places to stop along your journey!</h6>
+             <li class="list-group-item">first cool place</li>
+             <li class="list-group-item">second cool place</li>
+           </div>
+      </div>
+    </div>
+
+
+
+
   <div class="row justify-content-center py-2">
     <p>
       Created By: <a href="https://www.linkedin.com/in/daniel-knopf-609/">Daniel Knopf</a>, <a href="https://www.linkedin.com/in/isabel-armour-garb/">Isabel Armour-Garb</a>, <a href="https://www.linkedin.com/in/jack-canavan-gosselin/">Jack Canavan-Gosselin</a>, <a href="https://www.linkedin.com/in/nalu-tripician-8b3691174/">Nalu Tripician</a>
