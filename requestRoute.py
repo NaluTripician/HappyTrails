@@ -60,7 +60,6 @@ def route(start,end,apiKey,mode='walking'):
         for i in idx:
             if(i<len(path)-1):
                 POI.append( ( ((path[i][0] + path[i+1][0])/2), ((path[i][1] + path[i+1][1])/2)))
-        print(POI)
     # if(len(path)<5):
     #     idx = np.round(np.linspace(0, len(path) - 1, len(path))).astype(int)
     # else:
