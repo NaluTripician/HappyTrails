@@ -53,7 +53,7 @@ def route(start,end,apiKey,mode='walking'):
         idx = np.round(np.linspace(0, len(path) - 1, len(path))).astype(int)
         POI = path[idx]
     else:
-        idx = random.sample(list(range(0,len(path)-2),k=5))
+        idx = random.sample(list(range(0,len(path)-2)),k=5)
 
         POI = []
         for i in idx:
