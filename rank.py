@@ -11,16 +11,16 @@ def rank(places,dist):
     for place_id in places:
 
         rank = 0
-        avail = True
+        avail = False
         keys = places[place_id].keys()
 
         if ('types' in keys):
             for type in (places[place_id]['types']):
-                if type not in type_list:
-                    avail = False
-                    bad_ids.append(place_id)
-                    break
-        if avail:
+                if type in type_list:
+                    avail = True
+        if avail == False:
+            bad_ids.append(place_id)
+        else:
             if ('price_level' in keys):
                 rank += 2*(places[place_id]['price_level'])
             if ('rating' in keys):
