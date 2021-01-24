@@ -108,7 +108,7 @@ def route(start,end,apiKey,mode='walking'):
                 name = res['name']
                 places[id]['name'] = name
             if('types' in keys):
-                types = res'types']
+                types = res['types']
                 places[id]['types'] = types
             if('price_level' in keys):
                 price = res['price_level']
