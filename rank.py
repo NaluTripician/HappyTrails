@@ -13,7 +13,6 @@ def rank(places,dist):
         if ('types' in keys): #check if type is in type_list. if it isn't, rank += 5
             for type in (places[place_id]['types']):
                 if type in bad_types:
-                    places.pop(place_id, None)
                     avail = False
                     print('break1')
                     break
@@ -21,6 +20,7 @@ def rank(places,dist):
                     rank += 3
         if avail == False:
             print('break2')
+            places.pop(place_id, None)
             break
         if ('price_level' in keys):
             rank += 2*(places[place_id]['price_level'])
