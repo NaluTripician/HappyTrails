@@ -41,20 +41,21 @@ def locations(request):
         request.POST['origin'],
         request.POST['end'],
         "AIzaSyBpXEqVODCBRNApfwdQjg_LsPLL_UUyCbU",
-        "DRIVING"
+        request.POST['transport_mode'].upper(),
         )
 
-    place_list = place_list[:5]
     print(place_list)
     
-
+    place_list = place_list[:5]
+    print("AFTER:", place_list)
+    
 
     routeRequest = {
         
         'origin': request.POST['origin'],
         'destination': request.POST['end'],
         'waypoints': [{'stopover': True, 'location': {'placeId': waypoint_id}} for waypoint_id in place_list],
-        'travelMode': 'DRIVING',
+        'travelMode': request.POST['transport_mode'].upper(),
         'optimizeWaypoints': True,
     }
     # routeRequest = main(
