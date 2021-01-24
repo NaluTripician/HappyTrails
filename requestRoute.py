@@ -117,7 +117,7 @@ def route(start,end,apiKey,mode='walking'):
                 rating = placeDetails['result']['rating']
                 places[id]['rating'] = rating
             if('formatted_address' in keys):
-                print('fuck')
+                print('fuck',placeDetails['results']['formatted_address'])
                 formatted_address = placeDetails['results']['formatted_address']
                 print('shit')
                 places[id]['formatted_address'] = formatted_address
