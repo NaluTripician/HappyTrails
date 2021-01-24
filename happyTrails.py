@@ -20,7 +20,7 @@ def main(start,end,apiKey,mode):
 
     path,places,dist = route(start,end,apiKey,mode)
 
-    numberOfStops = getNumStops(dist)
+    #numberOfStops = getNumStops(dist)
     finalDestinations = rank(calcDistance(places,path),dist)
 
     happyTrail = []
