@@ -1,6 +1,7 @@
 import urllib.request
 import json
 import random
+import numpy as np
 
 def route(start,end,apiKey,mode='walking'):
     """
@@ -45,10 +46,20 @@ def route(start,end,apiKey,mode='walking'):
 
         dist += step['distance']['value']
 
-    #randomly chooses junction allong route to find poinst of intrest
-    point_of_possibility = len(path)
-    POI = [path[point_of_possibility//6],path[point_of_possibility//2],path[point_of_possibility//2 + point_of_possibility//6],path[3* point_of_possibility//6]]
-    #POI = random.sample(path,numPoint)
+    #chooses 4 poinsts equally spaced out based on number of instructions
+    path = np.array(path)
+
+    if(len(path)<5):
+        idx = np.round(np.linspace(0, len(arr) - 1, len(path))).astype(int)
+    else:
+        idx = np.round(np.linspace(0, len(arr) - 1, 5)).astype(int)
+
+    if(dist<10000):
+        radius="500"
+    elif(dist<60000):
+        radius="1500"
+    else:
+        radius ="5000"
 
     endpoint='https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
 
@@ -57,7 +68,7 @@ def route(start,end,apiKey,mode='walking'):
     #Finds points of intrest near path and extracts information from them
     for point in POI:
 
-        placeReq ='key={}&location={}&radius={}'.format(apiKey,str(point[0]) +','+str(point[1]),"500")
+        placeReq ='key={}&location={}&radius={}'.format(apiKey,str(point[0]) +','+str(point[1]),radius)
 
         request = endpoint+placeReq
         response = json.loads(urllib.request.urlopen(request).read())
