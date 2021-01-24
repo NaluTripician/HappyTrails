@@ -1,3 +1,4 @@
+import random
 """
 Ranks how "desirable" a place is based on type, price level, rating, and distance from the original route
 """
@@ -28,10 +29,9 @@ def rank2(places, dist):
     for id in bad_ids:
         del places[id]
     print(places)
-    final = ([(k,v) for k, v in sorted(places.items(), key=lambda item: item[1]['rank'])][0])
-    if len(final) == 0:
+    if len(places) == 0:
         return None
-    return final
+    return ([(k,v) for k, v in sorted(places.items(), key=lambda item: item[1]['rank'])][random.randint(0,3)])
 
 def rank(places,dist):
     output = []
