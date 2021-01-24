@@ -83,11 +83,11 @@
           <form action="{% url 'index'%}" method="post" id="address_form">{% csrf_token %}
         </form>
 
-            <div class="col-6">
-              <input type="text" name="origin" form="address_form" placeholder="Start Point">
+            <div class="col-12 col-md-6">
+              <input class="inputBox" type="text" name="origin" form="address_form" placeholder="Start Point">
             </div>
-            <div class="col-6">
-              <input type="text" name="end" form="address_form" placeholder="End Point">
+            <div class="col-12 col-md-6">
+              <input class="inputBox" type="text" name="end" form="address_form" placeholder="End Point">
             </div>
             <select name="transport_mode" form="address_form">
               <option selected="selected" disabled>Transport Method</option>

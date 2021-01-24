@@ -10,3 +10,15 @@
     max-width: 30vw;
     max-height: 25vh;
 }
+/* PLEASE UPDATE */
+
+.inputBox {
+    width: 80%;
+    min-width: 30vw;
+}
+
+@media (max-width: 767.98px) {
+    .inputBox {
+        height: 5vh;
+    }
+ }
