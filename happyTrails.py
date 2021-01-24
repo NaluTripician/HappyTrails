@@ -26,6 +26,7 @@ def main(start,end,apiKey,mode):
     happyTrail = []
     for poi in finalDestinations:
         happyTrail.append(poi[0])
+        print(poi)
 
     return happyTrail
 
