@@ -1,6 +1,16 @@
 import geopy.distance
+import numpy as np
+from requestRoute import route
+import itertools
 
 def calcDistance(possible_origins, possible_dest):
+    out_arr = []
+    for x in possible_origins:
+        out_arr.append(calcDistance2(x, possible_dest))
+    return out_arr
+
+
+def calcDistance2(possible_origins, possible_dest):
     """
     Calculates distances from the Google Maps route for points of interest
 
@@ -10,7 +20,6 @@ def calcDistance(possible_origins, possible_dest):
     returns: distance_dict, a modified version of the origins dictionary with distances added to
     represent the shortest distance from the original route to the POI
     """
-
     for x in possible_origins:
         coords_1 = possible_origins[x]['coords']
         min_dist = 0
@@ -26,6 +35,5 @@ def calcDistance(possible_origins, possible_dest):
                 pass
             i+=1
         possible_origins[x]['distance'] = min_dist
-
 
     return possible_origins

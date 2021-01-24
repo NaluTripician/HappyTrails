@@ -6,16 +6,6 @@ from requestRoute import route
 from rank import rank
 from distanceCalculator import calcDistance
 
-# def getNumStops(dist):
-#     if dist < 1999:
-#         return 2
-#     elif dist < 9999:
-#         return dist%1000
-#     elif(dist <199999):
-#         return 2
-#     else:
-#         return dist%100000
-
 def main(start,end,apiKey,mode):
 
     path,places,dist = route(start,end,apiKey,mode)
@@ -25,7 +15,8 @@ def main(start,end,apiKey,mode):
 
     happyTrail = []
     for poi in finalDestinations:
-        happyTrail.append(poi[0])
+        if poi is not None:
+            happyTrail.append(poi[0])
         print(poi)
 
     return happyTrail
