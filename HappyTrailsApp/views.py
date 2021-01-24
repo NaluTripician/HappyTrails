@@ -12,7 +12,7 @@ index = 'HappyTrailsApp/index.html'
 
 def index(request):
     if request.method == 'POST':
-        place_list = main(
+        place_list,addressList = main(
         request.POST['origin'],
         request.POST['end'],
         "AIzaSyBpXEqVODCBRNApfwdQjg_LsPLL_UUyCbU",
@@ -20,6 +20,7 @@ def index(request):
         )
 
         print(place_list)
+        print("addressList:", addressList)
         
         place_list = place_list[:5]
         print("AFTER:", place_list)
@@ -46,14 +47,19 @@ def nalu(request, question_id):
     return HttpResponse("Nalu Sucks %s Butts." % question_id)
 
 def locations(request):
-    place_list = main(
+
+# THIS PIECE OF CODE ISNT CALLLED
+    print("above the call to main")
+    place_list, addressList = main(
         request.POST['origin'],
         request.POST['end'],
         "AIzaSyBpXEqVODCBRNApfwdQjg_LsPLL_UUyCbU",
         request.POST['transport_mode'].upper(),
         )
 
-    print(place_list)
+    print("place list:", place_list)
+    print("addressList:", addressList)
+    
     
     # place_list = place_list[:5]
     # print("AFTER:", place_list)

@@ -1,0 +1,188 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>HappyTrails! Make Walking Fun</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpXEqVODCBRNApfwdQjg_LsPLL_UUyCbU
+    &callback=initMap&libraries=&v=weekly" defer></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <style>
+      #map {
+    height: 70vh;
+    /* The height is 400 pixels */
+    width: 80%;
+    /* The width is the width of the web page */
+  }
+
+.header-img {
+    max-width: 30vw;
+    max-height: 25vh;
+}
+/* PLEASE UPDATE */
+
+.inputBox {
+    width: 100%;
+    height: 5vh;
+
+}
+
+@media (max-width: 767.98px) {
+    .inputBox {
+        height: 5vh;
+    }
+ }
+    </style>
+    <!-- <link rel="stylesheet" type="text/css" href="../../static/css/style.css" /> -->
+
+
+    <!-- {/* OPEN GRAPH / FACEBOOK */} -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="http://Happytrails/space/"
+    />
+    <meta property="og:title" content="Happy Trails" />
+    <meta property="og:description" content="Make Walking Fun!" />
+    <meta
+      property="og:image"
+      content="../../../imgs/happyTrailsLogo.jpg"
+    />
+
+    <script>
+      console.log("outch");
+      function initMap(){
+        var routeRequest = "{{routeRequest}}";
+        console.log(routeRequest);
+
+          console.log("got into init map");
+          var directionsService = new google.maps.DirectionsService();
+          var directionsRenderer = new google.maps.DirectionsRenderer();
+
+
+          const wes = {lat: 41.55667268411338, lng: -72.65670426279243 };
+
+          const map = new google.maps.Map(document.getElementById("map"), {
+              zoom: 15,
+              center: wes,
+          });
+          const marker = new google.maps.Marker({
+              position: wes,
+              map: map,
+          });
+          console.log(routeRequest['origin']);
+
+          // var newReq = {
+          //     origin: routeRequest['origin'],
+          //     destination: routeRequest['destination'],
+          //     // Note that JavaScript allows us to access the constant
+          //     // using square brackets and a string value as its
+          //     // "property."
+          //     travelMode: google.maps.TravelMode['DRIVING']
+          // };
+          if (routeRequest !== 'No Route') {
+            routeRequest = JSON.parse("{{routeRequest | escapejs }}");
+            console.log(routeRequest);
+
+            directionsRenderer.setMap(map);
+            // directionsRenderer.setDirections(routeRequest);
+
+            console.log("got into calcroute");
+            directionsService.route(routeRequest, function(result, status) {
+                if (status == 'OK'){
+                    console.log(result);
+                    directionsRenderer.setDirections(result);
+                }
+            });
+        }
+      }
+    </script>
+  </head>
+  <body>
+
+    <section>
+      <div class="container">
+        <div class="row justify-content-center">
+          <img src="https://raw.githubusercontent.com/NaluTripician/HappyTrails/main/HappyTrailsApp/static/img/happyTrailsLogo.jpg?token=ABXIWUF77KFEBZAXXU7ZH6TABUFPO" class="img-fluid header-img">
+        </div>
+
+        <div class="row text-center justify-content-center py-2">
+            <p class="font-weight-normal">Want to spice up your morning stroll, afternoon bike ride, or evening drive?</p>
+        </div>
+
+        <div class="row text-center justify-content-center py-2">
+            <p class="font-weight-normal">Just enter where you are and where you want to go, and Happy Trails will take care of the rest!</p>
+        </div>
+
+        <div class="row text-center justify-content-center py-2">
+          <form action="{% url 'index'%}" method="post" id="address_form">{% csrf_token %}
+        </form>
+
+            <div class="col-lg py-1">
+              <input class="inputBox" type="text" name="origin" form="address_form" placeholder="Start Point">
+            </div>
+            <div class="col-lg py-1">
+              <input class="inputBox" type="text" name="end" form="address_form" placeholder="End Point">
+            </div>
+            <div class="col-lg py-1">
+            <select class="inputBox" name="transport_mode" form="address_form">
+              <option selected="selected" disabled>Transport Method</option>
+              <option value="Walking">Walking</option>
+              <option value="Driving">Driving</option>
+              <option value="Bicycling">Biking</option>
+            </select>
+          </div>
+            <!-- <div class="dropdown">
+              <button class="dropbtn" form="address_form" name="transport_mode">Dropdown</button>
+              <div class="dropdown-content">
+                <a href="#">Link 1</a>
+                <a href="#">Link 2</a>
+                <a href="#">Link 3</a>
+              </div>
+            </div> -->
+
+        </div>
+        <div class="row justify-content-center py-2">
+          <input type="submit" form="address_form">
+
+        </div>
+      </div>
+    </section>
+
+    <!-- <div class="row justify-content-center">
+      <div id="map">
+      </div>
+  </div> -->
+
+    <div class="row justify-content-center">
+      <div class="col-8 p-2 text-center">
+          <div id="map">
+          </div>
+      </div>
+      <div class="card p-2 text-center">
+          <div class="card-body">
+             <h5 class="card-title">YOUR ROUTE</h5>
+             <h6 class="card-subtitle mb-2 text-muted">Here are some places to stop along your journey!</h6>
+             <li class="list-group-item">first cool place</li>
+             <li class="list-group-item">second cool place</li>
+           </div>
+      </div>
+    </div>
+
+
+
+
+  <div class="row justify-content-center py-2">
+    <p>
+      Created By: <a href="https://www.linkedin.com/in/daniel-knopf-609/">Daniel Knopf</a>, <a href="https://www.linkedin.com/in/isabel-armour-garb/">Isabel Armour-Garb</a>, <a href="https://www.linkedin.com/in/jack-canavan-gosselin/">Jack Canavan-Gosselin</a>, <a href="https://www.linkedin.com/in/nalu-tripician-8b3691174/">Nalu Tripician</a>
+    </p>
+  </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
