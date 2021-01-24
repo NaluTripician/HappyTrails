@@ -54,6 +54,8 @@ def route(start,end,apiKey,mode='walking'):
     else:
         idx = np.round(np.linspace(0, len(path) - 1, 5)).astype(int)
 
+    POI = path[idx]
+
     if(dist<10000):
         radius="500"
     elif(dist<60000):
