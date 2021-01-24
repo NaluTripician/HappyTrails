@@ -28,7 +28,10 @@ def rank2(places, dist):
     for id in bad_ids:
         del places[id]
     print(places)
-    return([(k,v) for k, v in sorted(places.items(), key=lambda item: item[1]['rank'])][0])
+    final = ([(k,v) for k, v in sorted(places.items(), key=lambda item: item[1]['rank'])][0])
+    if len(final) == 0:
+        return None
+    return final
 
 def rank(places,dist):
     output = []
