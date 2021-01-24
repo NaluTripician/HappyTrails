@@ -20,8 +20,6 @@ def rank(places,dist):
                     avail = False
                     bad_ids.append(place_id)
                     break
-                elif type not in type_list:
-                    rank += 3
         if avail:
             if ('price_level' in keys):
                 rank += 2*(places[place_id]['price_level'])
