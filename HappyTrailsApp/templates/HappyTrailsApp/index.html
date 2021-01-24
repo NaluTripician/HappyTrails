@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -5,16 +7,45 @@
     <title>HappyTrails! Make Walking Fun</title>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpXEqVODCBRNApfwdQjg_LsPLL_UUyCbU
     &callback=initMap&libraries=&v=weekly" defer></script>
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="../../static/css/style.css" />
+    
+    <style>
+      #map {
+    height: 70vh;
+    /* The height is 400 pixels */
+    width: 80%;
+    /* The width is the width of the web page */
+  }
+
+.header-img {
+    max-width: 30vw;
+    max-height: 25vh;
+}
+/* PLEASE UPDATE */
+
+.inputBox {
+    width: 100%;
+    height: 5vh;
+
+}
+
+@media (max-width: 767.98px) {
+    .inputBox {
+        height: 5vh;
+    }
+ }
+    </style>
+    <!-- <link rel="stylesheet" type="text/css" href="../../static/css/style.css" /> -->
 
 
     <!-- {/* OPEN GRAPH / FACEBOOK */} -->
     <meta property="og:type" content="website" />
-    <!-- <meta
+    <meta
       property="og:url"
-      content={`https://globalprivacycontrol.org${router.pathname}`}
-    /> -->
+      content="http://Happytrails/space/"
+    />
     <meta property="og:title" content="Happy Trails" />
     <meta property="og:description" content="Make Walking Fun!" />
     <meta
@@ -22,7 +53,6 @@
       content="../../../imgs/happyTrailsLogo.jpg"
     />
 
-    <!-- <script src="../../static/js/index.js"></script> -->
     <script>
       console.log("outch");
       function initMap(){
@@ -77,25 +107,26 @@
     <section>
       <div class="container">
         <div class="row justify-content-center">
-          <img src="../../static/img/happyTrailsLogo.jpg" class="img-fluid header-img">
+          <img src="https://raw.githubusercontent.com/NaluTripician/HappyTrails/main/HappyTrailsApp/static/img/happyTrailsLogo.jpg?token=ABXIWUF77KFEBZAXXU7ZH6TABUFPO" class="img-fluid header-img">
         </div>
-        <div class="row text-center justify-content-center">
+        <div class="row text-center justify-content-center py-2">
           <form action="{% url 'index'%}" method="post" id="address_form">{% csrf_token %}
         </form>
 
-            <div class="col-12 col-md-6">
+            <div class="col-lg py-1">
               <input class="inputBox" type="text" name="origin" form="address_form" placeholder="Start Point">
             </div>
-            <div class="col-12 col-md-6">
+            <div class="col-lg py-1">
               <input class="inputBox" type="text" name="end" form="address_form" placeholder="End Point">
             </div>
-            <select name="transport_mode" form="address_form">
+            <div class="col-lg py-1">
+            <select class="inputBox" name="transport_mode" form="address_form">
               <option selected="selected" disabled>Transport Method</option>
               <option value="Walking">Walking</option>
               <option value="Driving">Driving</option>
               <option value="Bicycling">Biking</option>
             </select>
-            <input type="submit" form="address_form">
+          </div>
             <!-- <div class="dropdown">
               <button class="dropbtn" form="address_form" name="transport_mode">Dropdown</button>
               <div class="dropdown-content">
@@ -106,13 +137,17 @@
             </div> -->
 
         </div>
+        <div class="row justify-content-center py-2">
+          <input type="submit" form="address_form">
+
+        </div>
       </div>
     </section>
     <div class="row justify-content-center">
       <div id="map">
       </div>
   </div>
-  <div class="row justify-content-center">
+  <div class="row justify-content-center py-2">
     <p>
       Created By: <a href="https://www.linkedin.com/in/daniel-knopf-609/">Daniel Knopf</a>, <a href="https://www.linkedin.com/in/isabel-armour-garb/">Isabel Armour-Garb</a>, <a href="https://www.linkedin.com/in/jack-canavan-gosselin/">Jack Canavan-Gosselin</a>, <a href="https://www.linkedin.com/in/nalu-tripician-8b3691174/">Nalu Tripician</a>
     </p>
