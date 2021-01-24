@@ -1,9 +1,9 @@
-from django.urls import path
+from django.urls import include, path
 
 from . import views
 
 urlpatterns = [
-    path('<int:question_id>/index/', views.index, name='index'),
+    path('index/', views.index, name='index'),
     path('<int:question_id>/', views.nalu, name='nalu'),
-    path('<int:question_id>/results/', views.results, name='results'),
+    path('locations/', views.locations, name='locations'),
 ]
