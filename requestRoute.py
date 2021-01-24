@@ -100,7 +100,8 @@ def route(start,end,apiKey,mode='walking'):
             places[id] = {}
 
             keys = placeDetails['result'].keys()
-
+            res = placeDetails['result']
+            print(res)
             coords = (placeDetails['result']['geometry']['location']['lat'],placeDetails['result']['geometry']['location']['lng'])
             places[id]['coords'] = coords
 
